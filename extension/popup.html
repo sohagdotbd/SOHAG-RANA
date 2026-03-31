@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      width: 350px;
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #f9fafb;
+      color: #111827;
+    }
+    .header {
+      padding: 16px;
+      background: #111827;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .content {
+      padding: 16px;
+    }
+    .input-group {
+      margin-bottom: 12px;
+    }
+    .input-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
+      margin-bottom: 4px;
+      color: #4b5563;
+    }
+    .input-group input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+    .btn {
+      width: 100%;
+      padding: 10px;
+      background: #111827;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.2s;
+    }
+    .btn:hover {
+      background: #374151;
+    }
+    .btn-secondary {
+      background: white;
+      color: #111827;
+      border: 1px solid #d1d5db;
+      margin-top: 8px;
+    }
+    .btn-secondary:hover {
+      background: #f3f4f6;
+    }
+    .password-list {
+      margin-top: 16px;
+      max-height: 250px;
+      overflow-y: auto;
+    }
+    .password-item {
+      padding: 10px;
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .password-item:hover {
+      border-color: #111827;
+    }
+    .password-info {
+      flex: 1;
+    }
+    .password-title {
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .password-user {
+      font-size: 11px;
+      color: #6b7280;
+    }
+    .hidden {
+      display: none;
+    }
+    .error {
+      color: #ef4444;
+      font-size: 12px;
+      margin-top: 8px;
+      text-align: center;
+    }
+    .settings-link {
+      font-size: 11px;
+      color: #6b7280;
+      text-decoration: none;
+      display: block;
+      text-align: center;
+      margin-top: 12px;
+    }
+    .settings-link:hover {
+      color: #111827;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>SecurePass Manager</h1>
+    <div id="status-dot" style="width: 8px; height: 8px; border-radius: 50%; background: #ef4444;"></div>
+  </div>
+
+  <div class="content">
+    <!-- Login View -->
+    <div id="login-view">
+      <div class="input-group">
+        <label>Master Password</label>
+        <input type="password" id="master-password" placeholder="Enter master password">
+      </div>
+      <button class="btn" id="login-btn">Unlock Vault</button>
+      <div id="login-error" class="error hidden"></div>
+      <a href="#" id="config-link" class="settings-link">Configure App URL</a>
+    </div>
+
+    <!-- Config View -->
+    <div id="config-view" class="hidden">
+      <div class="input-group">
+        <label>App URL</label>
+        <input type="text" id="app-url" placeholder="https://your-app.run.app">
+      </div>
+      <button class="btn" id="save-config-btn">Save Configuration</button>
+      <button class="btn btn-secondary" id="back-to-login">Back</button>
+    </div>
+
+    <!-- Main View -->
+    <div id="main-view" class="hidden">
+      <div id="current-site-info" style="margin-bottom: 12px; font-size: 12px; color: #4b5563;">
+        Matching for: <span id="current-domain" style="font-weight: 600;"></span>
+      </div>
+      
+      <div class="password-list" id="password-list">
+        <!-- Passwords will be injected here -->
+      </div>
+
+      <button class="btn btn-secondary" id="add-new-btn">Add New Credential</button>
+      <button class="btn btn-secondary" id="lock-vault-btn">Lock Vault</button>
+    </div>
+
+    <!-- Add New View -->
+    <div id="add-view" class="hidden">
+      <div class="input-group">
+        <label>Title</label>
+        <input type="text" id="new-title">
+      </div>
+      <div class="input-group">
+        <label>Username</label>
+        <input type="text" id="new-username">
+      </div>
+      <div class="input-group">
+        <label>Password</label>
+        <input type="password" id="new-password">
+      </div>
+      <div class="input-group">
+        <label>Website URL</label>
+        <input type="text" id="new-url">
+      </div>
+      <button class="btn" id="save-new-btn">Save Credential</button>
+      <button class="btn btn-secondary" id="cancel-add-btn">Cancel</button>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

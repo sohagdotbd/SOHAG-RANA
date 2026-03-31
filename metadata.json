@@ -1,0 +1,5 @@
+{
+  "name": "SecurePass Manager",
+  "description": "A secure password manager with built-in strength checking, password generation, and encrypted-at-rest storage.",
+  "requestFramePermissions": ["camera"]
+}
